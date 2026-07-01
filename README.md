@@ -87,6 +87,23 @@ If you want to modify the code or run it locally:
 3. **Open your browser** and navigate to `http://localhost:3000`.
 
 ---
+
+## 🌐 Deploying to GitHub Pages (Live Website)
+
+If you pushed this code to your GitHub and want it to be hosted live for free at `https://your-username.github.io/HoloGraphic/`, **you must manually turn on GitHub Pages in your repository settings**.
+
+### Step-by-Step Instructions:
+1. Go to your repository on GitHub.
+2. Click the ⚙️ **Settings** tab near the top right.
+3. On the left-hand sidebar, click on **Pages**.
+4. Under the **Build and deployment** section:
+   - For **Source**, select **Deploy from a branch**.
+   - For **Branch**, select `main` (or `master`) from the dropdown.
+   - Leave the folder as `/ (root)`.
+   - Click **Save**.
+5. Wait about 1-2 minutes. GitHub is now building your site. Once complete, your live demo link will work!
+
+---
 <div align="center">
   <i>Built with passion for the future of spatial computing.</i>
 </div>
