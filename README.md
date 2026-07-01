@@ -1,56 +1,92 @@
-# HoloGraphic 🔮
+<div align="center">
+  
+# 🔮 HoloGraphic
+**A Next-Gen Augmented Reality Interface in Your Browser**
 
-An immersive, browser-based augmented reality experience built with **Three.js** and **MediaPipe Hand Tracking**. HoloGraphic allows you to use your webcam and bare hands to interact with 3D neon shapes in real-time.
+[![Live Demo](https://img.shields.io/badge/Play_Now-Live_Demo-00f0ff?style=for-the-badge&logo=googlechrome&logoColor=black)](https://visionstack-404.github.io/HoloGraphic/)
+[![Built With Three.js](https://img.shields.io/badge/Three.js-WebGL-black?style=for-the-badge&logo=threedotjs)](https://threejs.org/)
+[![Powered by MediaPipe](https://img.shields.io/badge/MediaPipe-AI_Vision-ea4335?style=for-the-badge)](https://mediapipe.dev/)
 
-## 🚀 Features
+*Interact with 3D holograms using just your webcam and bare hands. No controllers required.*
 
-- **No controllers needed**: Uses standard webcams and AI hand-tracking to detect your movements.
-- **Multiple Shapes**: Seamlessly swap between a Sphere, Cube, and Torus knot.
-- **Dynamic Scaling**: Pinch your right thumb and index finger to scale the 3D geometry dynamically.
-- **Interactive Colors**: Touch the shape with your left index finger to trigger neon color bursts.
-- **Glassmorphism UI**: Clean, futuristic overlay for selecting geometries.
+</div>
 
-## 🕹️ How to Play
+---
 
-### 1. Start the Experience
-1. Open the website or run the project locally.
-2. Ensure you are in a well-lit environment.
-3. **Allow webcam access** when prompted by your browser.
-4. Wait a few seconds for the AI models (MediaPipe) to load.
+## ⚡ What is HoloGraphic?
 
-### 2. The Controls
-- **Change Shape**: Use the UI buttons in the top right corner (`Sphere`, `Cube`, `Torus`) to select which shape is active.
-- **Right Hand (Scale)**: Hold up your right hand. Pinch your thumb and index finger together to shrink the shape. Open your fingers wide to enlarge the shape.
-- **Left Hand (Color)**: Hold up your left hand. Move your index fingertip so that it touches the 3D shape on your screen. The shape will instantly change to a random neon color.
+HoloGraphic is an immersive, browser-based augmented reality experiment that transforms your screen into a Tony Stark-style holographic laboratory. By combining **Machine Learning computer vision** with **WebGL 3D rendering**, the application tracks your hand movements in real-time and maps them into 3D space, allowing you to seamlessly manipulate neon geometries.
 
-## 💻 Local Setup
+### ✨ Core Features
+- **Zero Setup Tracking**: Uses Google's MediaPipe AI to detect 21 3D landmarks on your hands natively in the browser.
+- **Physical Scaling**: Dynamically calculate the Euclidean distance between your thumb and index finger to scale objects on screen.
+- **Collision Detection**: Spatial mapping allows the system to know exactly when your virtual fingertip touches the surface of the 3D geometry.
+- **Glassmorphism HUD**: A sleek, futuristic UI overlay that lets you swap between different geometrical constructs instantly.
 
-If you want to run the project on your own machine:
+---
 
-1. Clone this repository:
+## 🎮 How to Play
+
+Click the **[Live Demo](https://visionstack-404.github.io/HoloGraphic/)** link above, grant camera permissions, and wait a few seconds for the AI model to initialize.
+
+### The Gestures
+| Gesture | Action | Mechanics |
+| :--- | :--- | :--- |
+| **🤏 Right Hand Pinch** | **Scale Geometry** | Hold your right hand up. Pinch your thumb and index finger close together to shrink the shape, or pull them apart to enlarge it. |
+| **👆 Left Hand Touch** | **Change Color** | Hold your left hand up. Move your index fingertip so that it physically intersects the 3D shape on your screen. It will instantly burst into a new neon color. |
+| **🖱️ UI Click** | **Change Shape** | Use your mouse to click the `[Sphere]`, `[Cube]`, or `[Torus]` buttons in the top right corner to instantly swap the holographic geometry. |
+
+---
+
+## 🏗️ Architecture & Technical Details
+
+HoloGraphic is built using a highly optimized, vanilla web stack to ensure maximum framerates for AI tracking.
+
+### 1. The Rendering Pipeline (Three.js)
+The 3D environment is rendered over a transparent WebGL canvas overlaid exactly on top of your mirrored webcam feed. 
+- The geometry consists of a `THREE.Group` containing a solid mesh with additive blending (`opacity: 0.5`) and a glowing wireframe mesh. 
+- The scene is continuously rotated inside the `requestAnimationFrame` loop, and the opacity pulses dynamically using a Sine wave function based on `Date.now()`.
+
+### 2. The AI Vision Engine (MediaPipe Hands)
+MediaPipe runs a lightweight neural network directly in your browser. 
+- It captures video frames and returns an array of 21 (x, y, z) coordinates for each detected hand.
+- We differentiate between `Left` and `Right` hands to assign different interactive tools (Scaling vs. Painting/Coloring).
+
+### 3. Spatial Coordinate Mapping
+To make your physical hand interact with virtual objects, we map the normalized `[0.0 to 1.0]` coordinates from MediaPipe into the Three.js world space:
+```javascript
+const worldX = (indexTip.x - 0.5) * 16;
+const worldY = (0.5 - indexTip.y) * 12;
+```
+By calculating the 3D distance between your fingertip and the sphere's bounding box, we achieve seamless collision detection.
+
+---
+
+## 💻 Running it Locally
+
+If you want to modify the code or run it locally:
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/VisionStack-404/HoloGraphic.git
-   ```
-2. Navigate to the project folder:
-   ```bash
    cd HoloGraphic
    ```
-3. Because this project requires access to your webcam, it **must** be run through a local web server (opening the HTML file directly in Chrome blocks webcam access for security reasons). You can use any local server, such as:
 
-   Using Node.js/npx:
+2. **Serve the files:**
+   Webcam access strictly requires a secure context (`https://`) or `localhost`. You cannot simply open the `index.html` file in your browser. Use a local server:
+   
+   *Using Node.js:*
    ```bash
    npx serve .
    ```
-   Or using Python:
+   *Using Python:*
    ```bash
-   python -m http.server
+   python -m http.server 3000
    ```
-4. Open your browser and navigate to `http://localhost:3000` (or whichever port your local server specifies).
 
-## 🛠️ Technology Stack
-- [Three.js](https://threejs.org/) - 3D WebGL rendering
-- [MediaPipe Hands](https://mediapipe.dev/) - Machine Learning hand landmark detection
-- Vanilla HTML/CSS/JS
+3. **Open your browser** and navigate to `http://localhost:3000`.
 
-## 🤝 Credits
-Inspired by holographic interfaces and built for the web.
+---
+<div align="center">
+  <i>Built with passion for the future of spatial computing.</i>
+</div>
