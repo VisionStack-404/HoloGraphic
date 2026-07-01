@@ -90,7 +90,7 @@ If you want to modify the code or run it locally:
 
 ## 🌐 Deploying to GitHub Pages (Live Website)
 
-If you pushed this code to your GitHub and want it to be hosted live for free at `https://your-username.github.io/HoloGraphic/`, **you must manually turn on GitHub Pages in your repository settings**.
+If you pushed this code to your GitHub and want it to be hosted live for free at `https://visionstack-404.github.io/HoloGraphic/`, **you must manually turn on GitHub Pages in your repository settings**.
 
 ### Step-by-Step Instructions:
 1. Go to your repository on GitHub.
