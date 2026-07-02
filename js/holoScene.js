@@ -59,7 +59,7 @@
         /* ============================================================
            Coordinate mapping — hand landmarks → Three.js world space
            ============================================================ */
-        handToWorld(lm) {
+        handWorld(lm) {
             // Mirror x (webcam is CSS-mirrored; Three.js is not)
             const x = (0.5 - lm.x) * 14;
             const y = (0.5 - lm.y) * 10;
