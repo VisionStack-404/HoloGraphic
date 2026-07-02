@@ -7,7 +7,7 @@
 
     const STATES = Object.freeze({ SPLASH: 'SPLASH', ACTIVE: 'ACTIVE' });
 
-    class GameState {
+    class Game {
         constructor() {
             this.state = STATES.SPLASH;
             this._listeners = {};
@@ -25,6 +25,6 @@
         get isActive() { return this.state === STATES.ACTIVE; }
     }
 
-    HOLO.GameState = GameState;
+    HOLO.GameState = Game;
     HOLO.STATES    = STATES;
 })();
