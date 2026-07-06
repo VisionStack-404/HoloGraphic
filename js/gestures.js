@@ -34,7 +34,7 @@
 
             /* Key landmarks */
             const wrist    = lm[0];
-            const thumbTip = lm[4];
+            const thumbTips = lm[4];
             const idxTip   = lm[8];
             const midTip   = lm[12];
             const ringTip  = lm[16];
@@ -50,20 +50,20 @@
                 z: (idxMcp.z + midMcp.z + ringMcp.z + pinkyMcp.z) / 4
             };
 
-            g.thumbTip   = thumbTip;
+            g.thumbTip   = thumbTips;
             g.indexTip   = idxTip;
             g.palmCenter = palm;
             g.wrist      = wrist;
 
             /* ---- PINCH ---- */
-            g.pinchDistance = this._dist(thumbTip, idxTip);
+            g.pinchDistance = this._dist(thumbTips, idxTip);
             const wasPinch  = g.pinch;
             g.pinch      = g.pinchDistance < this.pinchThreshold;
             g.pinchStart = !wasPinch && g.pinch;
             g.pinchEnd   =  wasPinch && !g.pinch;
 
             /* ---- FIST ---- */
-            const tips     = [thumbTip, idxTip, midTip, ringTip, pinkyTip];
+            const tips     = [thumbTips, idxTip, midTip, ringTip, pinkyTip];
             const tipDists = tips.map(t => this._dist(t, palm));
             const avgDist  = tipDists.reduce((a, b) => a + b, 0) / 5;
             const wasFist  = g.fist;
