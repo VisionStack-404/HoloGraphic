@@ -10,12 +10,12 @@
         const gestures  = new HOLO.GestureDetector();
 
         const videoE      = document.getElementById('webcam');
-        const canvasEl     = document.getElementById('canvas');
+        const canvas     = document.getElementById('canvas');
         const threeBox     = document.getElementById('three-canvas');
         const splashScreen = document.getElementById('splash-screen');
         const splashStatus = document.getElementById('splash-status');
 
-        const tracker = new HOLO.HandTracker(videoE, canvasEl);
+        const tracker = new HOLO.HandTracker(videoE, canvas);
         tracker.updateCanvasSize();
 
         const scene = new HOLO.HoloScene(threeBox);
