@@ -7,10 +7,10 @@
     window.HOLO = window.HOLO || {};
 
     class HandTracker {
-        constructor(videoElement, canvasElement) {
-            this.video  = videoElement;
-            this.canvas = canvasElement;
-            this.ctx    = canvasElement.getContext('2d');
+        constructor(videoElements, canvasElements) {
+            this.video  = videoElements;
+            this.canvas = canvasElements;
+            this.ctx    = canvasElements.getContext('2d');
             this.hands  = null;
             this.cam    = null;
             this.isReady = false;
