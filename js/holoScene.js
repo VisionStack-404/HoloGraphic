@@ -20,10 +20,10 @@
             );
             this.camera.position.z = 8;
 
-            this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            this.renderer.setClearColor(0x000000, 0);
+            this.renderers = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            this.renderers.setSize(window.innerWidth, window.innerHeight);
+            this.renderers.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            this.renderers.setClearColor(0x000000, 0);
             container.appendChild(this.renderer.domElement);
 
             /* --- Collections --- */
