@@ -1,5 +1,5 @@
 /* ===================================================
-   HoloGraphic — Holographic Shape System
+    Holographic Shape System
    Custom GLSL shaders for the signature hologram look
    =================================================== */
 (function () {
