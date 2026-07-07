@@ -1,5 +1,5 @@
 /* ===================================================
-   HoloGraphic — GPU Particle Systems
+   GPU Particle Systems
    =================================================== */
 (function () {
     'use strict';
