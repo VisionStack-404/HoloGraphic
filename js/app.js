@@ -1,5 +1,5 @@
 /* ===================================================
-   HoloGraphic — Tony Stark App Controller
+   HoloGraphic — Tony Stark App Controllers
    =================================================== */
 (function () {
     'use strict';
