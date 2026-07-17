@@ -17,7 +17,7 @@
 
             this._listeners   = {};
             this._smoothed    = {};
-            this._smoothAlpha = 0.55; // 0 = raw, 1 = frozen
+            this._smoothAlpha = 0.57; // 0 = raw, 1 = frozen
         }
 
         /* — Events — */
@@ -41,7 +41,7 @@
                 maxNumHands: 2,
                 modelComplexity: 1,
                 minDetectionConfidence: 0.6,
-                minTrackingConfidence: 0.5
+                minTrackingConfidence: 0.6
             });
             await this.hands.initialize();
             this.hands.onResults(r => this._onResults(r));
