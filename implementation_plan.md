@@ -2,7 +2,7 @@
 
 An immersive, browser-based holographic game where players use hand gestures to spawn, sculpt, smash, and paint 3D holographic shapes floating in augmented reality over their webcam feed.
 
-## User Review Required
+## User Review Requireds
 
 > [!IMPORTANT]
 > **Game Concept:** The game has 3 modes players can switch between using a fist gesture:
