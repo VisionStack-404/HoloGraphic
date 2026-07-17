@@ -7,7 +7,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
 
         const gameState = new HOLO.GameState();
-        const gestures  = new HOLO.GestureDetector();
+        const gest  = new HOLO.GestureDetector();
 
         const videoE      = document.getElementById('webcam');
         const canvas     = document.getElementById('canvas');
@@ -57,8 +57,8 @@
                 gestures.detect(landmarks, handedness);
             }
 
-            const L = gestures.getGesture('left');
-            const R = gestures.getGesture('right');
+            const L = gest.getGesture('left');
+            const R = gest.getGesture('right');
 
             let interacting = false;
 
