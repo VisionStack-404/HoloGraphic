@@ -6,9 +6,9 @@
     window.HOLO = window.HOLO || {};
 
     const POINTS = Object.freeze({
-        SPAWN:        10,
-        DESTROY:      25,
-        PAINT_STROKE:  5
+        SPAWN:        20,
+        DESTROY:      30,
+        PAINT_STROKE:  8
     });
 
     const COMBO_THRESHOLDS = [
