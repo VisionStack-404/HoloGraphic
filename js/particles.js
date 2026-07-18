@@ -15,8 +15,8 @@
             this.pool  = [];           // live particle objects
 
             // Typed arrays
-            this.pos    = new Float32Array(this.max * 3);
-            this.col    = new Float32Array(this.max * 4);
+            this.pos    = new Float32Array(this.max * 2);
+            this.col    = new Float32Array(this.max * 3);
             this.sizes  = new Float32Array(this.max);
 
             // Geometry
