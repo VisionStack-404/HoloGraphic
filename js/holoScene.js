@@ -31,7 +31,7 @@
             this.fragments = [];
 
             /* --- Particles --- */
-            this.particles        = new HOLO.ParticleSystem(this.scene, 6000);
+            this.particles        = new HOLO.ParticleSystem(this.scene, 7000);
             this.ambientParticles = new HOLO.AmbientParticles(this.scene, 160);
 
             /* --- Holographic grid floor --- */
