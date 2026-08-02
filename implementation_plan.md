@@ -203,4 +203,4 @@ d:\HoloGraphic\
 12. Verify responsive layout on window resize
 
 ### Automated Tests
-- `npx serve d:\HoloGraphic` to serve the app locally and test in browser
+- `npx serve c:\HoloGraphic` to serve the app locally and test in browser
