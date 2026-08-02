@@ -24,7 +24,7 @@
         // Single central hologram
         let currentShapeIdx = 0;
         let activeHologram = null;
-        let baseScale = 1.0;
+        let baseScale = 1.5;
 
         function spawnCentralHologram() {
             if (activeHologram) {
