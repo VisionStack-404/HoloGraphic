@@ -17,7 +17,7 @@
 
             this._listeners   = {};
             this._smoothed    = {};
-            this._smoothAlpha = 0.57; // 0 = raw, 1 = frozen
+            this._smoothAlpha = 0.58; // 0 = raw, 1 = frozen
         }
 
         /* — Events — */
