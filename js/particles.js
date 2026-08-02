@@ -11,7 +11,7 @@
     class ParticleSystem {
         constructor(scene, maxParticles) {
             this.scene = scene;
-            this.max   = maxParticles || 6000;
+            this.max   = maxParticles || 7000;
             this.pool  = [];           // live particle objects
 
             // Typed arrays
