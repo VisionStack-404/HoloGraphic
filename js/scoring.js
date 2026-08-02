@@ -1,6 +1,6 @@
-/* ===================================================
-   Scoring Systems
-   =================================================== */
+
+  // Scoring Systems
+   
 (function () {
     'use strict';
     window.HOLO = window.HOLO || {};
