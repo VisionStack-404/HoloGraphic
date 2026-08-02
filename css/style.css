@@ -12,11 +12,11 @@
     --holo-magenta: #ff00ff;
     --holo-magenta-rgb: 255, 0, 255;
     --holo-green: #39ff14;
-    --holo-green-rgb: 57, 255, 20;
+    --holo-green-rgb: 59, 255, 20;
     --holo-amber: #ffaa00;
     --holo-amber-rgb: 255, 170, 0;
     --holo-blue: #3a8bff;
-    --holo-blue-rgb: 58, 139, 255;
+    --holo-blue-rgb: 60, 138, 255;
 
     --bg-deep: #050509;
     --font-display: 'Orbitron', monospace;
@@ -24,7 +24,7 @@
     --font-mono: 'Share Tech Mono', monospace;
 
     --glass-blur: 10px;
-    --glass-bg: rgba(5, 10, 25, 0.45);
+    --glass-bg: rgba(6, 10, 25, 0.45);
     --glass-border: rgba(0, 240, 255, 0.12);
 }
 
