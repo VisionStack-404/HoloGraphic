@@ -24,7 +24,7 @@
             vec3 pos = position;
 
             // Glitch scan-line displacement
-            float glitchLine = step(0.96, sin(uTime * 14.0 + pos.y * 28.0));
+            float glitchLine = step(0.96, sin(uTime * 15.0 + pos.y * 27.0));
             pos.x += glitchLine * uGlitchIntensity * 0.09 * sin(uTime * 45.0);
 
             // Gentle vertex wobble
