@@ -1,5 +1,5 @@
 /* ===================================================
-   HoloGraphic — Hand Tracking Wrapper
+   HoloGraphic — Hand Tracking Wrapper Class
    Wraps MediaPipe Hands with smoothing & event system
    =================================================== */
 (function () {
