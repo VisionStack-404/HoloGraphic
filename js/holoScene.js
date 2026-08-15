@@ -1,5 +1,5 @@
 /* ===================================================
-   HoloGraphic — Three.js Scene Manager
+   HoloGraphic — Three.js Scene Management system
    =================================================== */
 (function () {
     'use strict';
