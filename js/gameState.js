@@ -1,5 +1,5 @@
 /* ===================================================
-   HoloGraphic — Simplified State (Tony Stark Edition)
+   HoloGraphic — Simplified State 
    =================================================== */
 (function () {
     'use strict';
