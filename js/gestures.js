@@ -1,5 +1,5 @@
 /* ===================================================
-   HoloGraphic — Gesture Engine (Tony Stark Edition)
+   HoloGraphic — Gesture Engine 
    Enhanced with palm-delta tracking for rotation and
    two-hand distance tracking for scaling.
    =================================================== */
