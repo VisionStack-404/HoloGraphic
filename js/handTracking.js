@@ -1,6 +1,6 @@
 /* ===================================================
    HoloGraphic — Hand Tracking Wrapper Class
-   Wraps MediaPipe Hands with smoothing & event system
+   Wraps MediaPipe Hands with smoothing & events  systems
    =================================================== */
 (function () {
     'use strict';
@@ -46,7 +46,7 @@
             await this.hands.initialize();
             this.hands.onResults(r => this._onResults(r));
 
-            /* Camera loop */
+            /* Camera loops */
             this.cam = new Camera(this.video, {
                 onFrame: async () => { await this.hands.send({ image: this.video }); },
                 width: 1280,
@@ -57,7 +57,7 @@
             this.emit('ready');
         }
 
-        /* — Frame handler — */
+        /* — Frame handlers — */
         _onResults(results) {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
