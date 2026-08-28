@@ -23,7 +23,7 @@
             this.score       = 0;
             this.combo       = 0;
             this.lastActionTime = 0;
-            this.comboTimeout   = 2000; // ms before combo resets
+            this.comboTimeout   = 2000; // ms before comboTimeout  resets
             this.highScore   = this._load();
             this._listeners  = {};
         }
