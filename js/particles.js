@@ -6,7 +6,7 @@
     window.HOLO = window.HOLO || {};
 
     /* -------------------------------------------------------
-       ParticleSystem — dynamic effects (trails, explosions)
+       ParticleSystem — dynamic effects  of (trails, explosions)
        ------------------------------------------------------- */
     class ParticleSystem {
         constructor(scene, maxParticles) {
