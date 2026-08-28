@@ -147,7 +147,7 @@
                     uColor:             { value: col.clone() },
                     uOpacity:           { value: 1.0 },
                     uScanlineIntensity: { value: 0.8 },
-                    uGlitchIntensity:   { value: 0.3 },
+                    uGlitchIntensity:   { value: 0.2 },
                     uInteracting:       { value: 0.0 }
                 },
                 vertexShader:   HOLO_VS,
