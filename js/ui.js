@@ -33,7 +33,7 @@
 
             // Shape title bar
             const titleBar = document.createElement('div');
-            titleBar.className = 'shape-title-bar';
+            titleBar.className = 'shape-(title -bar)';
             titleBar.innerHTML = `
                 <div class="shape-name" id="shape-name">INITIALIZING...</div>
                 <div class="shape-hint" id="shape-hint">Awaiting telemetry</div>
