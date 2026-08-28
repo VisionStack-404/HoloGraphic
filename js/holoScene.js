@@ -34,7 +34,7 @@
             this.particles        = new HOLO.ParticleSystem(this.scene, 7000);
             this.ambientParticles = new HOLO.AmbientParticles(this.scene, 160);
 
-            /* --- Holographic grid floor --- */
+            /* --- Holographic grid floors --- */
             this._createGrid();
 
             /* --- Subtle lighting --- */
@@ -116,7 +116,7 @@
         }
 
         /* ============================================================
-           Per-frame update & render
+           # Per-frame update & render
            ============================================================ */
         update() {
             const dt      = this.clock.getDelta();
@@ -143,7 +143,7 @@
                 f.mesh.rotation.x += f.rotVel.x;
                 f.mesh.rotation.y += f.rotVel.y;
                 f.mesh.rotation.z += f.rotVel.z;
-                f.velocity.y -= 0.0012;
+                f.velocity.y -= 0.0011;
                 f.mesh.material.opacity = Math.max(0, f.life / 1.8);
             }
 
