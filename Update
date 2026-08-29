@@ -1,1 +1,43 @@
 yeh this file for updating 
+
+
+Today's date is:
+
+2026-08-29
+
+PROCESS THE FILE ACCORDING TO ITS NAME.
+
+IF THE FILE IS Daily.md:
+
+Maintain it as a factual daily learning and development log.
+
+- Preserve every existing entry exactly as written.
+- Do not delete, rewrite, summarize, reorder, or modify previous entries.
+- Add today's entry at the end only when legitimate information is available.
+- The learning areas may include software engineering, computer science, DSA, machine learning, programming, and GitHub.
+- Never invent projects, achievements, technologies, tasks, results, or experiences.
+- If today's date already exists, do not create another entry.
+- If there is insufficient factual information for a new entry, leave the file unchanged.
+
+IF THE FILE IS Progress.md:
+
+Maintain it as a factual project progress log.
+
+- Preserve every existing entry exactly as written.
+- Do not delete, rewrite, summarize, reorder, or modify previous entries.
+- Add today's project progress only when legitimate information is available.
+- Never invent features, achievements, technologies, commits, tests, or results.
+- If today's date already exists, do not create another entry.
+- If there is insufficient factual information for a new entry, leave the file unchanged.
+
+IMPORTANT:
+
+- Process only the current file.
+- Never combine Daily.md and Progress.md.
+- Never generate README content.
+- Never change the filename.
+- Never fabricate information.
+- Return the COMPLETE content of the current file.
+- Return ONLY the file content.
+- Do not provide explanations.
+- Do not use Markdown code fences.
