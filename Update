@@ -7,3 +7,12 @@ hi man this upadate file
 - Implemented improvements to the repository update automation: enhanced the GitHub Actions workflow to append daily entries to Update.md with safer commit logic, file-change verification, and basic conflict handling.
 - Refactored the update script to validate date uniqueness, sanitize entry content, and enforce the standardized "## YYYY-MM-DD / ### Project Update" format. Added unit tests for date parsing and append behavior and improved logging for easier debugging.
 - Updated project documentation to describe the daily update workflow and troubleshooting steps. Next steps: add test coverage reporting to CI, generate a weekly aggregated changelog, and prototype an n8n integration to create issues when automated updates fail.
+
+## 2026-08-30
+
+### Project Update
+
+- Added CI test-coverage collection and artifact upload: updated the workflow to run coverage during the test stage and save reports as CI artifacts so coverage results are retained for inspection and future reporting integrations.
+- Implemented a weekly changelog generator script (tools/aggregate-changelog.py) that parses Update.md entries and consolidates them into a weekly summary file; added a scheduled CI job to run the generator weekly and commit the aggregated changelog when changes are detected.
+- Prototyped an n8n-based alert workflow to create GitHub issues when the automated update job fails: exported an initial workflow definition and documented required webhooks and secrets for the integration. The prototype includes retry logic and a basic issue template for failure diagnostics.
+- Small reliability improvements: enhanced commit-message formatting for automated updates, added a fallback author/email for CI commits, and tightened file-safety checks to avoid accidental overwrites. Next steps: enable external coverage reporting (e.g., Codecov), validate the n8n webhook end-to-end, and add monitoring for weekly changelog commits.
