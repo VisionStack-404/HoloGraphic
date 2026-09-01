@@ -38,3 +38,14 @@ hi man this upadate file
 - Improved automated PR fallback UX: the append fallback now opens a PR with a dedicated template and diagnostic checklist. The workflow applies an "auto-update/conflict" label and posts links to the run artifacts to help reviewers triage the automated change.
 - Updated docs/integration/n8n-testing.md with sample cURL commands, local-run instructions for the mock webhook, and a fixture to simulate transient timeouts; validated that the n8n prototype's retry/backoff behavior handles simulated network hiccups without creating duplicate issues.
 - Next steps: enable the Codecov secret for the repository, wire aggregated metrics into a small Grafana sandbox for rapid prototyping, and run a full end-to-end n8n webhook test against the exported workflow runner when the integration credentials are available.
+
+## 2026-09-02
+
+### Project Update
+
+- Provisioned a lightweight Grafana sandbox (docker-compose) to prototype visualizations for ci/metrics/daily-update-metrics.json: added a starter dashboard JSON and a short guide (ci/metrics/grafana/README.md) showing how to import metrics and map run_id, runner_labels, and timestamps to dashboard variables. Outcome: quick iterative loop for dashboard design without external services.
+- Improved the metrics aggregator: added deduplication by run_id, normalized runner_labels to a stable set of keys, and introduced a --since flag to limit aggregation windows. Updated unit tests to cover timezone-normalized ISO8601 parsing and dedupe behavior.
+- Enhanced the automated-PR fallback UX and diagnostics: PR template now includes an "automation-diagnostics" section populated with run_id, post-append checksum, a compact diff preview, and links to compressed workflow artifacts. Workflow now attaches the relevant artifacts to the PR to reduce reviewer triage time.
+- Extended tools/update-preview.py to emit a sample metrics JSON in the standardized schema and to simulate the Grafana dashboard variables; contributors can now run a local preview that prints both the Update.md diff and the metrics payload the aggregator would produce.
+- Added a CI smoke-check job (ci/smoke/update-log-check) that runs the append routine in dry-run, validates that today's entry would be unique and correctly formatted, and fails fast if validation rules are violated. Also added a manual workflow_dispatch input to run full e2e append simulations on demand.
+- Documentation and next steps: updated tools/README.md and ci/metrics/README.md with onboarding steps for the Grafana sandbox, and listed next actions — finalize Grafana alert rules, decide retention policy for metrics artifacts, and enable the repository Codecov secret once account configuration is available.
