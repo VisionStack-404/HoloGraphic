@@ -55,3 +55,13 @@ hi man this upadate file
 - Improved local developer experience: updated ci/metrics/grafana/README.md with quickstart commands to run the sandbox, import the dashboard, and run a headless import test. Added a --metrics-only flag to tools/update-preview.py to generate only the metrics payload without producing an Update.md diff.
 - Created a small CI job that uploads the dashboard JSON as a named artifact on successful aggregator runs so reviewers can quickly download and import a curated dashboard; this also enables versioned review of dashboard changes.
 - Next steps: run an end-to-end test wiring the Grafana sandbox to the aggregator artifacts in CI, finalize metrics retention and archival policy (ci/metrics/retention.md drafted), and enable Codecov once the project account is available. Also plan a short runbook to exercise the n8n alert-to-issue flow against the mock webhook and verify no duplicate issues are created during retries.
+
+## 2026-09-03
+
+### Project Update
+
+- Implemented an end-to-end CI scenario that exercises the aggregator and the Grafana sandbox together: the job produces a sample metrics artifact, uploads it, and runs a disposable Docker Compose Grafana import step to validate the dashboard panels accept the aggregated schema without manual edits. Added deterministic test fixtures so the job is reproducible in CI and locally.
+- Finalized the metrics retention and archival workflow: updated ci/metrics/retention.md with concrete retention windows and implemented a pruning step in the aggregator that tags artifacts with retention metadata and excludes expired metrics from weekly aggregates. Added unit tests covering pruning behavior and retention metadata propagation.
+- Strengthened reliability for alert-to-issue flow: added a dedupe test for the n8n webhook prototype that simulates repeated failure webhooks and asserts the exported workflow does not create duplicate issues. Also improved diagnostic logging in the mock runner to include failure identifiers and retry counts.
+- Documentation and developer ergonomics: expanded ci/metrics/grafana/README.md with a step-by-step CI import example, added a troubleshooting subsection for common dashboard import errors, and included a small script (ci/metrics/import-dashboard.sh) to perform headless imports for reviewers.
+- Outcome / Next actions: run a scheduled integration that wires the aggregated CI artifacts to the Grafana sandbox in a full end-to-end run, enable the Codecov secret once the account is provisioned, and add an automated dashboard-diff check to detect unintentional panel changes before dashboard artifacts are published.
