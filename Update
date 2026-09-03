@@ -65,3 +65,14 @@ hi man this upadate file
 - Strengthened reliability for alert-to-issue flow: added a dedupe test for the n8n webhook prototype that simulates repeated failure webhooks and asserts the exported workflow does not create duplicate issues. Also improved diagnostic logging in the mock runner to include failure identifiers and retry counts.
 - Documentation and developer ergonomics: expanded ci/metrics/grafana/README.md with a step-by-step CI import example, added a troubleshooting subsection for common dashboard import errors, and included a small script (ci/metrics/import-dashboard.sh) to perform headless imports for reviewers.
 - Outcome / Next actions: run a scheduled integration that wires the aggregated CI artifacts to the Grafana sandbox in a full end-to-end run, enable the Codecov secret once the account is provisioned, and add an automated dashboard-diff check to detect unintentional panel changes before dashboard artifacts are published.
+
+## 2026-09-04
+
+### Project Update
+
+- Added an automated dashboard-diff CI job that compares newly generated dashboard JSON against the repository's canonical dashboard file. If unexpected changes are detected the job lints the JSON, generates a compact human-readable diff, and opens a draft PR with the diff and validation results to prevent accidental dashboard regressions.
+- Improved idempotency for the n8n alert-to-issue flow: introduced a stable idempotency key derived from run_id + payload hash so retries from the mock webhook or transient network errors will not create duplicate issues. Added an integration test to ci/webhook-e2e that simulates repeated deliveries and asserts single-issue behavior.
+- Strengthened aggregator pruning logic: fixed an edge case where missing retention metadata caused metrics to be dropped; the aggregator now defaults missing retention to "retain" and tags artifacts accordingly. Added unit tests to cover missing/invalid retention metadata and ensured pruning is a no-op when retention is unspecified.
+- Added a small maintenance utility (tools/ci-rotate-secrets.sh) and README notes describing safe secret rotation for the CODECOV_TOKEN and webhook credentials; CI jobs now log masked rotation events and provide guidance to revoke tokens if compromised.
+- Minor developer UX improvements: updated tools/update-preview.py to include an optional --dashboard-diff flag that prints the dashboard diff alongside the Update.md preview, and added CI examples in ci/metrics/grafana/README.md showing how to reproduce the dashboard-diff job locally with docker-compose.
+- Outcome / Next steps: monitor the first week of dashboard-diff PRs to tune noise thresholds, enable permanent Codecov uploads once the project account is provisioned and secrets are rotated as advised, and schedule a short review to adopt the diff-and-PR policy for other generated artifacts.
