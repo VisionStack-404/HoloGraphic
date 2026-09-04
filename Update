@@ -76,3 +76,12 @@ hi man this upadate file
 - Added a small maintenance utility (tools/ci-rotate-secrets.sh) and README notes describing safe secret rotation for the CODECOV_TOKEN and webhook credentials; CI jobs now log masked rotation events and provide guidance to revoke tokens if compromised.
 - Minor developer UX improvements: updated tools/update-preview.py to include an optional --dashboard-diff flag that prints the dashboard diff alongside the Update.md preview, and added CI examples in ci/metrics/grafana/README.md showing how to reproduce the dashboard-diff job locally with docker-compose.
 - Outcome / Next steps: monitor the first week of dashboard-diff PRs to tune noise thresholds, enable permanent Codecov uploads once the project account is provisioned and secrets are rotated as advised, and schedule a short review to adopt the diff-and-PR policy for other generated artifacts.
+
+## 2026-09-05
+
+### Project Update
+
+- Implemented a dashboard-diff noise filter in the CI validator: the validation job now computes a lightweight structural-change score for dashboard JSON and only opens a draft PR when the change score exceeds a configurable threshold. Added unit tests for the scoring heuristic and a preview flag in tools/update-preview.py to emulate the filter locally.
+- Introduced a per-date staging-branch fallback for failed fast-forward appends: when the append path cannot update the default branch, CI writes the proposed change to a short-lived branch auto-updates/staging/2026-09-05, attaches diagnostics (diff, checksum, run_id), and opens a labeled PR to streamline reviewer triage. This reduces merge friction and preserves the automated-change audit trail.
+- Optimized the metrics aggregator for large runs by switching to a streaming JSON parse and incremental dedupe by run_id: peak memory in aggregator tests dropped significantly and integration fixtures now complete faster. Added integration tests that exercise the streaming path with larger synthetic artifacts.
+- Documentation and next steps: updated ci/metrics/grafana/README.md and the CI runbook with the new noise-threshold tuning guidance and the staging-branch fallback workflow. Next actions are to monitor noise-filter false positives during the first week, tune the threshold values, and enable the Codecov upload once secrets are rotated and verified.
