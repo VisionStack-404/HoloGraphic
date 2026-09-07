@@ -109,3 +109,17 @@ hi man this upadate file
 - Improved tools/update-preview.py: added a --tz flag to render the proposed Update.md timestamp in alternative timezones and a --audit flag to generate the same compact audit report the new CI job emits. This helps contributors reproduce CI audit findings locally and align timestamps when troubleshooting.
 - Documentation updates: expanded docs/integration/n8n-testing.md with a rehearsal checklist, added ci/metrics/audit-runbook.md describing how to interpret the ingestion audit output, and noted the structured log schema in tools/README.md for easier debugging by reviewers.
 - Next steps: monitor the n8n rehearsal artifacts for one week to confirm no duplicate issues or missed deliveries, iterate on the dashboard-diff noise threshold using the newly produced telemetry, and schedule a short team runbook review to align on retention policy adjustments and long-term metrics archival.
+
+## 2026-09-08
+
+### Project Update
+
+- Implemented an adaptive dashboard-diff threshold tuner: CI now runs a weekly tuner job that analyzes recent dashboard-diff telemetry and proposes a suggested noise threshold artifact (ci/validate/threshold-suggestion.json). The validator can optionally consume this suggestion to reduce manual threshold tuning.
+- Added a canary run workflow for the append+PR fallback path: scheduled canary runs execute the append routine in an isolated staging environment and perform a full fallback-to-PR cycle against a disposable branch to validate PR templates, artifact attachments, and branch-cleanup behavior without touching the mainline branch.
+- Enhanced the mock n8n runner with a health-check and tunable backoff parameters: exposed a /health endpoint that CI probes before replaying webhooks and added config knobs for backoff windows used in e2e tests. Included an integration test that simulates slow upstream responses to verify idempotency and retry correctness.
+- Upgraded the aggregator to support compressed and signed metrics artifacts: CI producers can now gzip metrics payloads and include a detached signature; the aggregator verifies signatures before ingestion. Added unit tests and a migration note in ci/metrics/README.md describing backward compatibility and verification steps.
+- Extended tools/update-preview.py with a --simulate-pr mode: contributors can generate the exact PR title, body, labels, and attached diagnostic bundle (diff, checksum, metrics) that the automation would publish. This helps reviewers and maintainers preview fallback PR content locally.
+- Added an NDJSON log-schema validation job: new CI task validates structured NDJSON logs against log-schema.md and emits a compact failure report so append/aggregator jobs fail fast when logging schema drifts occur.
+- Fixed an off-by-one retention pruning bug related to timezone rounding in the aggregator; added a regression test that covers daylight-savings boundary behavior to prevent accidental premature pruning.
+- Documentation and runbook updates: expanded docs/integration/n8n-testing.md with health-check curl examples and backoff tuning guidance, updated ci/metrics/README.md with compression/signing instructions, and noted the canary workflow in ci/runbooks/canary.md.
+- Next steps: observe canary and tuner outputs for one week to confirm stability, iterate the tuner heuristic if false positives/negatives appear, evaluate auto-apply policy for low-risk dashboard diffs, and measure storage savings from compressed metrics artifacts before changing long-term archival settings.
