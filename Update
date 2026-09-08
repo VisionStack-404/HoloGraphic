@@ -123,3 +123,14 @@ hi man this upadate file
 - Fixed an off-by-one retention pruning bug related to timezone rounding in the aggregator; added a regression test that covers daylight-savings boundary behavior to prevent accidental premature pruning.
 - Documentation and runbook updates: expanded docs/integration/n8n-testing.md with health-check curl examples and backoff tuning guidance, updated ci/metrics/README.md with compression/signing instructions, and noted the canary workflow in ci/runbooks/canary.md.
 - Next steps: observe canary and tuner outputs for one week to confirm stability, iterate the tuner heuristic if false positives/negatives appear, evaluate auto-apply policy for low-risk dashboard diffs, and measure storage savings from compressed metrics artifacts before changing long-term archival settings.
+
+## 2026-09-09
+
+### Project Update
+
+- Prototyped a gated auto-apply workflow for low-risk dashboard diffs: added ci/validate/auto-apply.yml which evaluates the threshold-suggestion.json, runs the dashboard-diff validator, executes the Grafana import smoke-check, and—if all checks pass and the structural-change score is below a conservative limit—creates a draft PR that can be auto-merged by a separate maintenance job after a short holding period. The prototype is gated and will not auto-merge unless both the canary runs and required CI checks succeed.
+- Added local tooling and verification for compressed/signed metrics: introduced tools/verify-metrics-signature.py to let contributors validate detached signatures and gzip payloads locally; updated ci/metrics/README.md with verification examples and a note on rotating verification keys safely.
+- Improved NDJSON validation robustness: updated the NDJSON validator to tolerate benign trailing whitespace and harmless newline variations, and fixed a parsing edge-case that misinterpreted empty lines as invalid records. Added unit tests that mirror common log output patterns from Windows and Unix runners.
+- Collected a first-week compression savings snapshot: added a small CI job (ci/metrics/compute-compression-savings) that compares raw vs. gzipped artifact sizes and uploads a compact JSON report (ci/metrics/compression-savings.json) for review to inform archival decisions.
+- Minor reliability fixes and docs: tightened error handling in the auto-merge guard to surface failed pre-merge checks in the PR body, updated docs/runbooks/auto-apply.md with the safe-gating checklist, and added an entry to ci/runbooks/canary.md describing how to validate an auto-apply candidate during canary runs.
+- Outcome / Next steps: run the gated auto-apply prototype for one week using conservative thresholds, review the compression-savings report to decide on archive policy changes, perform a key-rotation rehearsal for metric-signing keys, and gather feedback from reviewers on the auto-apply PR UX before widening the policy.
