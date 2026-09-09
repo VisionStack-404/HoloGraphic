@@ -134,3 +134,12 @@ hi man this upadate file
 - Collected a first-week compression savings snapshot: added a small CI job (ci/metrics/compute-compression-savings) that compares raw vs. gzipped artifact sizes and uploads a compact JSON report (ci/metrics/compression-savings.json) for review to inform archival decisions.
 - Minor reliability fixes and docs: tightened error handling in the auto-merge guard to surface failed pre-merge checks in the PR body, updated docs/runbooks/auto-apply.md with the safe-gating checklist, and added an entry to ci/runbooks/canary.md describing how to validate an auto-apply candidate during canary runs.
 - Outcome / Next steps: run the gated auto-apply prototype for one week using conservative thresholds, review the compression-savings report to decide on archive policy changes, perform a key-rotation rehearsal for metric-signing keys, and gather feedback from reviewers on the auto-apply PR UX before widening the policy.
+
+## 2026-09-10
+
+### Project Update
+
+- Completed the first-week gated auto-apply rehearsal: executed scheduled canary runs against auto-apply candidates, collected telemetry, and validated that the conservative threshold prevented unintended auto-merges. Updated the validator to annotate proposed PRs with the structural-change score and preflight Grafana smoke-check results to aid reviewer decisions.
+- Performed a metrics-signing key rotation rehearsal and tool improvements: ran a dry-run rotation using tools/verify-metrics-signature.py (extended to accept both PEM and JWK signing keys), verified backward-compatible verification of detached gzipped artifacts, and updated ci/metrics/README.md with a step-by-step key-rotation checklist and rollback guidance.
+- Hardened logging and validation edge-cases: fixed an NDJSON validator issue where UTF-8 BOMs could cause false parse failures, added unit tests covering BOM and mixed-line-ending scenarios, and extended the auto-merge guard tests to assert that failed pre-merge checks are surfaced in PR bodies and prevent merges.
+- Outcome / Next steps: continue the gated auto-apply pilot for another week while tuning the score annotations, run a stakeholder review on the key-rotation playbook, measure compression savings over multiple weeks before changing archival defaults, and schedule a canary that exercises auto-apply against a wider set of low-risk dashboard changes.
