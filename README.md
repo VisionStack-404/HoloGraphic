@@ -1,7 +1,7 @@
 <div align="center">
   
 # 🔮 HoloGraphic
-**An AI-Powered Holographic Spatial Computing Platform**
+**--An AI-Powered Holographic Spatial Computing Platform--**
 
 [![Live Demo](https://img.shields.io/badge/Play_Now-Live_Demo-00f0ff?style=for-the-badge&logo=googlechrome&logoColor=black)](https://visionstack-404.github.io/HoloGraphic/)
 [![GitHub Stars](https://img.shields.io/github/stars/VisionStack-404/HoloGraphic?style=for-the-badge&logo=github)](https://github.com/VisionStack-404/HoloGraphic)
